@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('https://phantom-marca.unidadeditorial.es/a65c89e8fb0340789143c12b2d9369cc/resize/828/f/jpg/assets/multimedia/imagenes/2020/12/26/16089962638435.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    color: #fff;
+}
+
+h2 {
+    font-family: 'Lobster', cursive;
+    color: #FFD700;
+}
+
+.container {
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8); 
+    width: 100%; 
+    height: 100vh;
+    z-index: 1; 
+}
+
+.btn-primary {
+    background-color: #ff0000;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #e60000;
+}
+
+.card {
+    background: transparent;
+}
+
+.card-title, h2 {
+    color: #FFD700;
+}
+
+p {
+    color: white;
+}
+
+#chartContainer {
+    max-height: 300px;
+    overflow: hidden;
+}
+
+#heroChart {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#loadingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 1);
+    z-index: 1050;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-background {
+    width: 100%;
+    height: 100%;
+}
+
+.loading-gif {
+    max-width: 300px; 
+}
+
+.typing-effect {
+    font-family: 'Courier New', Courier, monospace;
+    display: inline-block;
+    white-space: nowrap; 
+    overflow: hidden; 
+    border-right: 4px solid #fff; 
+    animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #fff; } 
+}

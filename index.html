@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>superhéroe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="background-overlay">
+        <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100 text-center py-4">
+            <h2 class="fs-1 my-5 fw-bold">¿Qué superhéroe eres?</h2>
+            <p class="fw-light typing-effect">Los superhéroes son lo más. Pero, ¿a qué superhéroe te pareces más?</p>
+            <form class="d-flex justify-content-center w-100">
+                <div class="mb-3 d-flex align-items-center">
+                    <input type="text" id="valorIngresado" class="form-control me-2" style="max-width: 400px;">
+                    <button id="formHero" type="button" class="btn btn-primary">Buscar</button>
+                    <i class="fas fa-question-circle ms-3" data-bs-toggle="tooltip" data-bs-placement="right" title="Al finalizar la recarga deslice hacia abajo" style="font-size: 1.5rem; cursor: pointer;"></i>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Visible when the search button is clicked -->
+    <div id="oculto" class="container mt-4">
+        <div class="row justify-content-center">
+            <!-- Column for superhero card -->
+            <div class="col-12 col-md-8 mb-4">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="row g-0">
+                        <div class="col-md-4 d-flex align-items-center justify-content-center p-3">
+                            <img id="imagen" class="img-fluid rounded" alt="Superhero" style="max-height: 250px;">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3 class="card-title" id="nombre">
+                                    <i class="fas fa-user-shield text-primary me-2"></i> <!-- Superhero Icon -->
+                                </h3>
+                                <hr>
+                                <p id="conexiones" class="card-text text-muted">
+                                    <i class="fas fa-link me-2"></i> <!-- Connections Icon -->
+                                    <span class="fw-bold">Connections:</span> <span class="badge bg-primary"></span>
+                                </p>
+                                <p id="publicado" class="card-text">
+                                    <i class="fas fa-book-open me-2 text-success"></i> <!-- Publisher Icon -->
+                                    <span class="fw-bold">Published by:</span>
+                                </p>
+                                <p id="trabajo" class="card-text text-muted">
+                                    <i class="fas fa-briefcase me-2"></i> <!-- Work Icon -->
+                                    <span class="fw-bold">Occupation:</span>
+                                </p>
+                                <p id="aparicion" class="card-text">
+                                    <i class="fas fa-calendar-alt me-2 text-danger"></i> <!-- Appearance Icon -->
+                                    <span class="fw-bold">First Appearance:</span>
+                                </p>
+                                <p id="altura" class="card-text text-muted">
+                                    <i class="fas fa-ruler-vertical me-2"></i> <!-- Height Icon -->
+                                    <span class="fw-bold">Height:</span>
+                                </p>
+                                <p id="peso" class="card-text">
+                                    <i class="fas fa-weight me-2 text-warning"></i> <!-- Weight Icon -->
+                                    <span class="fw-bold">Weight:</span>
+                                </p>
+                                <p id="alianzas" class="card-text text-muted">
+                                    <i class="fas fa-users me-2"></i> <!-- Alliances Icon -->
+                                    <span class="fw-bold">Alliances:</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column for the chart -->
+            <div id="chartContainer" class="col-10 col-md-4 mb-5">
+                <div class="card shadow-lg border-0 rounded-lg p-3">
+                    <h4 class="text-center mb-3"><i class="fas fa-chart-pie text-info"></i> Stats Overview</h4>
+                    <!-- Placeholder for chart -->
+                    <canvas id="heroChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="d-none">
+        <div class="loading-background d-flex justify-content-center align-items-center">
+            <img src="https://cdn.dribbble.com/users/1192236/screenshots/3609803/1164567.gif" alt="Cargando" class="loading-gif">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>   
+    <script src="assets/js/script.js"></script>
+
+    <script>
+        // Initialize Bootstrap tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+</body>
+</html>
